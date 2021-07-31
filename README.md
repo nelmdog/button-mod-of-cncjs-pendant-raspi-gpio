@@ -1,4 +1,10 @@
 # cncjs-pendant-raspi-gpio
+
+I'm hoping to create a set of user triggerable physical buttons for CNCJS based on the code for the cncjs-pendant-raspi-gpio. For my own Marlin and SKR Pro 1.2 based MPCNC setup I want to be able to trigger the tool on and off, and initiate a feedhold from physical buttons mounted next to the machine.
+
+My coding-fu is weak so I'm hoping to use this existing code as a basis for something that works, even if it's a very inellegant solution!
+
+
 Simple Raspberry Pi GPIO Pendant control for CNCjs.
 
 [![NPM](https://nodei.co/npm/cncjs-pendant-raspi-gpio.png?compact=true)](https://nodei.co/npm/cncjs-pendant-raspi-gpio/)

@@ -14,8 +14,9 @@ var exec = require('child_process').exec;
 var sleep = require('sleep');
 var now = require("performance-now")
 var gpio = require('onoff').Gpio,
-  led = new gpio(17, 'out'),
-  button = new gpio(4, 'in', 'both');  // Define GPIO pins on Raspberry Pi
+  button1 = new gpio(23, 'in', 'both'),
+  button2 = new gpio(24, 'in', 'both'),
+  button3 = new gpio(25, 'in', 'both');  // Define GPIO pins on Raspberry Pi
 
 var options = {};
 
@@ -68,67 +69,58 @@ var store = {
 
 
 // Global Varables
-var button_pressed_time = 0
-var button_released_time = 0
-var button_presses = 0
-var button_hold_fuction = null
-var button_presses_fuction = null
-
-// Create Blink Fuction
-function blink(interations, speed) {
-	// Turn ON LED
-	led.writeSync(1);
-
-	// Create Timeout Fuction
-	setTimeout(function() {
-		for(var i = 0; i < interations; i++) {
-			// Blink LED
-			sleep.msleep(speed)
-			led.writeSync(0);
-			sleep.msleep(speed)
-			led.writeSync(1);
-		}
-	}, 0);
-};
+var button1_pressed_time = 0
+var button1_released_time = 0
+var button1_presses = 0
+var button1_hold_fuction = null
+var button1_presses_fuction = null
+var button2_pressed_time = 0
+var button2_released_time = 0
+var button2_presses = 0
+var button2_hold_fuction = null
+var button2_presses_fuction = null
+var button3_pressed_time = 0
+var button3_released_time = 0
+var button3_presses = 0
+var button3_hold_fuction = null
+var button3_presses_fuction = null
 
 
 var createServer = function(options) {
 
-  // Create Button Interupt
-	button.watch(function (err, state) {
+  // Create Button1 Interupt
+	button1.watch(function (err, state) {
 		// Set Error Catch
 		if (err) {
 			throw err;
 		}
-		// Turn LED ON/OFF based on state
-		led.writeSync(Number(!state));
+		
+		// Button1 Pressed
+		if ( state ) { // button1 pressed
 
-		// Button Pressed
-		if ( state ) { // button pressed
+			// Incremmet Button1 Pressed Count
+			button1_presses++
 
-			// Incremmet Button Pressed Count
-			button_presses++
-
-			// check button count
-			if ( now() - button_pressed_time >= 800 ) {  // x milisecionds between presses time
+			// check button1 count
+			if ( now() - button1_pressed_time >= 800 ) {  // x milisecionds between presses time
 				// Reset Press Counter
-				button_presses = 1
-				console.log("Button Count Reset")
+				button1_presses = 1
+				console.log("Button1 Count Reset")
 			}
 
-			console.log("Button Count: " + button_presses)
+			console.log("Button1 Count: " + button1_presses)
 
 
-			// Kill Old Button Hold Fuction
-			clearTimeout(button_hold_fuction);
-			button_hold_fuction = null;
+			// Kill Old Button1 Hold Fuction
+			clearTimeout(button1_hold_fuction);
+			button1_hold_fuction = null;
 
 			// Use a timeout with 1000ms (this would be your X variable)
-			button_hold_fuction = setTimeout(function() {
+			button1_hold_fuction = setTimeout(function() {
 				// Compare key down time with key up time
-				if (state && +button_released_time < +button_pressed_time) {
+				if (state && +button1_released_time < +button1_pressed_time) {
 					// Key has been held down for x seconds
-					console.log("button_hold_fuction: Key has been held down for x seconds")
+					console.log("button1_hold_fuction: Key has been held down for x seconds")
 					blink(10, 50)
 
 					// Poweroff
@@ -136,103 +128,205 @@ var createServer = function(options) {
 					exec("sudo poweroff", puts);
 				} else {
 				// Key has not been held down for x seconds
-					console.log("button_hold_fuction: exit, safe timout")
+					console.log("button1_hold_fuction: exit, safe timout")
 				}
 			}, 3000);
 
 			// Update Time Pressed
-			button_pressed_time = now()
-			//console.log("button_pressed_time")
-		} else { // button released
-			//console.log("button_presses: " + button_presses)
+			button1_pressed_time = now()
+			//console.log("button1_pressed_time")
+		} else { // button1 released
+			//console.log("button1_presses: " + button1_presses)
 
-			// Kill Old Button Presses Fuction
-			clearTimeout(button_presses_fuction)
-			button_presses_fuction = null
+			// Kill Old Button1 Presses Fuction
+			clearTimeout(button1_presses_fuction)
+			button1_presses_fuction = null
 
 			// Update Time Released
-			button_released_time = now()
-			console.log("Button Released: button_released_time - button_pressed_time: " + ( button_released_time - button_pressed_time))
+			button1_released_time = now()
+			console.log("Button1 Released: button1_released_time - button1_pressed_time: " + ( button1_released_time - button1_pressed_time))
 
 			// Bebounce Protection
-			if ( button_released_time - button_pressed_time < 40 ) {
-				button_presses = 0
-				console.log("Bounce Detected!!!")
+			if ( button1_released_time - button1_pressed_time < 40 ) {
+				button1_presses = 0
+				console.log("Button1 Bounce Detected!!!")
 
 			} else {
 
-				// Button Presses Switch
-				switch (button_presses) {
+				// Button1 Presses Switch
+				switch (button1_presses) {
 				case 0:
-					console.log("Button Presses: " + button_presses + " | Eletrical Noise");
+					console.log("Button1 Presses: " + button1_presses + " | Eletrical Noise");
 					break;
 				case 1:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(button_presses, 200)
-						console.log("Button Presses: " + button_presses)
-
+					button1_presses_fuction = setTimeout(function() {
+						
 						// CNC Command
-						socket.emit('write', options.port, "M9;\n");
+						socket.emit('write', options.port, "M05;\n");
 					}, 1000);
-					break;
-				case 2:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(button_presses, 200)
-						console.log("Button Presses: " + button_presses)
-
-						// CNC Command
-						socket.emit('write', options.port, "M7;\n");
-					}, 1000);
-					break;
-				case 3:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(button_presses, 200)
-						console.log("Button Presses: " + button_presses)
-
-						// CNC Command
-						socket.emit('write', options.port, "M8;\n");
-					}, 1000);
-					break;
-				case 4:
-				case 5:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(button_presses, 200)
-						console.log("Button Presses: " + button_presses)
-
-						// CNC Command
-						socket.emit('write', options.port, "$X;\n");
-					}, 1000);
-					break;
-				case 6:
-				case 7:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(button_presses, 200)
-						console.log("Button Presses: " + button_presses)
-
-						// CNC Command
-						socket.emit('write', options.port, "$SLP;\n");
-					}, 1000);
-					break;
+					break;				
 				default:
-					button_presses_fuction = setTimeout(function() {
-						// Blink LEDS
-						blink(8, 150)
-						console.log("Button Presses (or more): " + button_presses)
-
+					button1_presses_fuction = setTimeout(function() {
+						
 						// CNC Command
 						socket.emit('write', options.port, "$H;\n");
 					}, 1000);
 				}
 			}
 
-			// Kill Button Hold Fuction
-			clearTimeout(button_hold_fuction);
-			button_hold_fuction = null;
+			// Kill Button1 Hold Fuction
+			clearTimeout(button1_hold_fuction);
+			button1_hold_fuction = null;
+		}
+
+		// Create Button2 Interupt
+	button2.watch(function (err, state) {
+		// Set Error Catch
+		if (err) {
+			throw err;
+		}
+		
+		// Button2 Pressed
+		if ( state ) { // button2 pressed
+
+			// Incremmet Button2 Pressed Count
+			button2_presses++
+
+			// check button2 count
+			if ( now() - button2_pressed_time >= 800 ) {  // x milisecionds between presses time
+				// Reset Press Counter
+				button2_presses = 1
+				console.log("Button2 Count Reset")
+			}
+
+			console.log("Button2 Count: " + button2_presses)
+
+
+			// Kill Old Button2 Hold Fuction
+			clearTimeout(button2_hold_fuction);
+			button2_hold_fuction = null;
+
+			
+			// Update Time Pressed
+			button2_pressed_time = now()
+			//console.log("button2_pressed_time")
+		} else { // button2 released
+			//console.log("button2_presses: " + button2_presses)
+
+			// Kill Old Button2 Presses Fuction
+			clearTimeout(button2_presses_fuction)
+			button2_presses_fuction = null
+
+			// Update Time Released
+			button2_released_time = now()
+			console.log("Button2 Released: button2_released_time - button2_pressed_time: " + ( button2_released_time - button2_pressed_time))
+
+			// Bebounce Protection
+			if ( button2_released_time - button2_pressed_time < 40 ) {
+				button2_presses = 0
+				console.log("Button2 Bounce Detected!!!")
+
+			} else {
+
+				// Button2 Presses Switch
+				switch (button2_presses) {
+				case 0:
+					console.log("Button2 Presses: " + button2_presses + " | Button2 Eletrical Noise");
+					break;
+				case 1:
+					button2_presses_fuction = setTimeout(function() {
+						
+						// CNC Command
+						socket.emit('write', options.port, "M03;\n");
+					}, 1000);
+					break;				
+				default:
+					button2_presses_fuction = setTimeout(function() {
+						
+						// CNC Command
+						socket.emit('write', options.port, "$H;\n");
+					}, 1000);
+				}
+			}
+
+			// Kill Button2 Hold Fuction
+			clearTimeout(button2_hold_fuction);
+			button2_hold_fuction = null;
+		}
+		
+		// Create Button3 Interupt
+	button3.watch(function (err, state) {
+		// Set Error Catch
+		if (err) {
+			throw err;
+		}
+		
+		// Button3 Pressed
+		if ( state ) { // button3 pressed
+
+			// Incremmet Button3 Pressed Count
+			button3_presses++
+
+			// check button3 count
+			if ( now() - button3_pressed_time >= 800 ) {  // x milisecionds between presses time
+				// Reset Press Counter
+				button3_presses = 1
+				console.log("Button3 Count Reset")
+			}
+
+			console.log("Button3 Count: " + button3_presses)
+
+
+			// Kill Old Button3 Hold Fuction
+			clearTimeout(button3_hold_fuction);
+			button3_hold_fuction = null;
+
+			
+			// Update Time Pressed
+			button3_pressed_time = now()
+			//console.log("button3_pressed_time")
+		} else { // button3 released
+			//console.log("button3_presses: " + button3_presses)
+
+			// Kill Old Button3 Presses Fuction
+			clearTimeout(button3_presses_fuction)
+			button3_presses_fuction = null
+
+			// Update Time Released
+			button3_released_time = now()
+			console.log("Button3 Released: button3_released_time - button3_pressed_time: " + ( button3_released_time - button3_pressed_time))
+
+			// Bebounce Protection
+			if ( button3_released_time - button3_pressed_time < 40 ) {
+				button3_presses = 0
+				console.log("Button3 Bounce Detected!!!")
+
+			} else {
+
+				// Button3 Presses Switch
+				switch (button3_presses) {
+				case 0:
+					console.log("Button3 Presses: " + button3_presses + " | Button3 Eletrical Noise");
+					break;
+				case 1:
+					button3_presses_fuction = setTimeout(function() {
+						
+						// CNC Command
+						socket.emit('write', options.port, "M108;\n");
+					}, 1000);
+					break;				
+				default:
+					button3_presses_fuction = setTimeout(function() {
+						
+						// CNC Command
+						socket.emit('write', options.port, "$H;\n");
+					}, 1000);
+				}
+			}
+
+			// Kill Button3 Hold Fuction
+			clearTimeout(button3_hold_fuction);
+			button3_hold_fuction = null;
 		}
 
 		//console.log(button_pressed_time.toFixed(3)) // the number of milliseconds the current node process is running
@@ -254,6 +348,14 @@ var createServer = function(options) {
           store.controller.state = state;
       });
       socket.on('Smoothie:settings', function(settings) {
+          store.controller.settings = settings;
+      });
+	  
+      // Marlin
+      socket.on('Marlin:state', function(state) {
+          store.controller.state = state;
+      });
+      socket.on('Marlin:settings', function(settings) {
           store.controller.settings = settings;
       });
 

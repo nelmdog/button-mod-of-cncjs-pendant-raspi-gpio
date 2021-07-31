@@ -1,4 +1,4 @@
-# cncjs-pendant-raspi-gpio
+# Rework of the cncjs-pendant-raspi-gpio Code Allowing for Multiple Physical Buttons
 
 I'm hoping to create a set of user triggerable physical buttons for CNCJS based on the code for the cncjs-pendant-raspi-gpio. For my own Marlin and SKR Pro 1.2 based MPCNC setup I want to be able to trigger the tool on and off, and initiate a feedhold from physical buttons mounted next to the machine.
 

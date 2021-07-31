@@ -4,6 +4,21 @@ I'm hoping to create a set of user triggerable physical buttons for CNCJS based 
 
 My coding-fu is weak so I'm hoping to use this existing code as a basis for something that works, even if it's a very inellegant solution!
 
+Settings:
+
+Pin Number, GPIO Pin, Button Function, GCode Called
+Pin 16, GPIO 23, Stop Tool and Shutdown if held (Red button), M05
+Pin 18, GPIO24, Start Tool (Green Button), M03
+Pin 20, NA, Common ground for all buttons, NA
+Pin 22, GPIO25, Feed Hold function that efectively pauses the cut (Yellow button), M108 but requires 'emergency parser' to be enabled in firmware to really be useful
+
+If this works, hopefully it will be of help to others, or a basis for a more elegent and effecient method!
+
+All constructive comments welcomed.
+
+Thanks!
+
+
 Original readme follows:
 
 

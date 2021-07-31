@@ -4,6 +4,8 @@ I'm hoping to create a set of user triggerable physical buttons for CNCJS based 
 
 My coding-fu is weak so I'm hoping to use this existing code as a basis for something that works, even if it's a very inellegant solution!
 
+Original readme follows:
+
 
 Simple Raspberry Pi GPIO Pendant control for CNCjs.
 

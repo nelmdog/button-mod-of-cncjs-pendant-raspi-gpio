@@ -1,13 +1,13 @@
 {
-  "name": "cncjs-pendant-raspi-gpio",
-  "version": "0.1.5",
-  "description": "Simple Raspberry Pi GPIO Pendant control for CNCjs.",
+  "name": "button-mod-of-cncjs-pendant-raspi-gpio",
+  "version": "0.0.1",
+  "description": "Button Mod based on Simple Raspberry Pi GPIO Pendant control for CNCjs by Austin St. Aubin.",
   "main": "./index.js",
   "engines": {
     "node": ">=4"
   },
   "bin": {
-    "cncjs-pendant-raspi-gpio": "./bin/cncjs-pendant-raspi-gpio"
+    "cncjs-pendant-raspi-gpio": "./bin/button-mod-of-cncjs-pendant-raspi-gpio"
   },
   "preferGlobal": true,
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cncjs/cncjs-pendant-raspi-gpio.git"
+    "url": "git+https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio.git"
   },
   "keywords": [
     "cncjs",
@@ -24,12 +24,12 @@
     "pi",
     "pinout"
   ],
-  "author": "Austin St. Aubin <AustinSaintAubin@gmail.com>",
+  "author": "nelmdog <nothanks@whatevs.co.jp>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cncjs/cncjs-pendant-raspi-gpio/issues"
+    "url": "https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio/issues"
   },
-  "homepage": "https://github.com/cncjs/cncjs-pendant-raspi-gpio#readme",
+  "homepage": "https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio#readme",
   "dependencies": {
     "commander": "^2.9.0",
     "inquirer": "^3.0.1",

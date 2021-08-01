@@ -7,7 +7,7 @@
     "node": ">=4"
   },
   "bin": {
-    "cncjs-pendant-raspi-gpio": "./bin/button-mod-of-cncjs-pendant-raspi-gpio"
+    "button-mod-of-cncjs-pendant-raspi-gpio": "./bin/button-mod-of-cncjs-pendant-raspi-gpio"
   },
   "preferGlobal": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "raspberry",
     "pi",
     "pinout"
+    "button"
   ],
   "author": "nelmdog <nothanks@whatevs.co.jp>",
   "license": "MIT",

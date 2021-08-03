@@ -16,6 +16,8 @@ Pin 20, NA, Common ground for all buttons, NA
 
 Pin 22, GPIO25, Feed Hold function that efectively pauses the cut (Yellow button), M108 but requires 'emergency parser' to be enabled in firmware to really be useful
 
+![image-a](https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio/raw/master/docs/image-a.jpg)
+
 If this works, hopefully it will be of help to others, or a basis for a more elegent and effecient method!
 
 All constructive comments welcomed.

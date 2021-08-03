@@ -54,11 +54,14 @@ npm install
 ## Usage
 Run `bin/button-mod-of-cncjs-pendant-raspi-gpio` to start.
 
-Original readme follows:
+## Original readme follows:
 
 .
+
 .
+
 .
+
 .
 
 Simple Raspberry Pi GPIO Pendant control for CNCjs.

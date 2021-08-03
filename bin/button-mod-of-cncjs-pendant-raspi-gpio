@@ -24,13 +24,13 @@ program
 	.version(pkg.version)
 	.usage('-s <secret> -p <port> [options]')
 	.option('-l, --list', 'list available ports then exit')
-  .option('-s, --secret', 'the secret key stored in the ~/.cncrc file')
+    .option('-s, --secret', 'the secret key stored in the ~/.cncrc file')
 	.option('-p, --port <port>', 'path or name of serial port')
 	.option('-b, --baudrate <baudrate>', 'baud rate (default: 115200)', 115200)
 	.option('--socket-address <address>', 'socket address or hostname (default: localhost)', 'localhost')
 	.option('--socket-port <port>', 'socket port (default: 8000)', 8000)
 	.option('--controller-type <type>', 'controller type: Grbl|Smoothie|TinyG (default: Grbl)', 'Grbl')
-  .option('--access-token-lifetime <lifetime>', 'access token lifetime in seconds or a time span string (default: 30d)', '30d')
+    .option('--access-token-lifetime <lifetime>', 'access token lifetime in seconds or a time span string (default: 30d)', '30d')
 
 program.parse(process.argv);
 
@@ -285,7 +285,8 @@ var createServer = function(options) {
 			// Update Time Pressed
 			button3_pressed_time = now()
 			//console.log("button3_pressed_time")
-		} else { // button3 released
+		} else { 
+			// button3 released
 			//console.log("button3_presses: " + button3_presses)
 
 			// Kill Old Button3 Presses Fuction
@@ -372,8 +373,6 @@ var createServer = function(options) {
           store.sender.status = data;
       });
 
-		// Turn LED ON
-		led.writeSync(1);  // turn led on
 
     });
 };

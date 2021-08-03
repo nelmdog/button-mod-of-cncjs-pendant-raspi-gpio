@@ -4,9 +4,9 @@ I'm hoping to create a set of user triggerable physical buttons for CNCJS based 
 
 My coding-fu is weak so I'm hoping to use this existing code as a basis for something that works, even if I produce a very inellegant solution to my problem!
 
-You will require two resistors, a 1k and a 10k to build as a current limiter/voltage divider to protect the GPIO.
+You will require two resistors per button, a 1k and a 10k to build as a current limiter/voltage divider to protect the GPIO.
 
-Settings:
+#### Settings:
 
 Pin Number, GPIO Pin, Button Function, GCode Called
 
@@ -64,7 +64,7 @@ Run `bin/button-mod-of-cncjs-pendant-raspi-gpio` to start.
 
 .
 
-Simple Raspberry Pi GPIO Pendant control for CNCjs.
+# Simple Raspberry Pi GPIO Pendant control for CNCjs.
 
 [![NPM](https://nodei.co/npm/cncjs-pendant-raspi-gpio.png?compact=true)](https://nodei.co/npm/cncjs-pendant-raspi-gpio/)
 

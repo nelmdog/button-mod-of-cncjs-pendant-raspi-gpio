@@ -4,11 +4,15 @@ I'm hoping to create a set of user triggerable physical buttons for CNCJS based 
 
 My coding-fu is weak so I'm hoping to use this existing code as a basis for something that works, even if I produce a very inellegant solution to my problem!
 
+You will require two resistors, a 1k and a 10k to build as a current limiter/voltage divider to protect the GPIO.
+
 Settings:
 
 Pin Number, GPIO Pin, Button Function, GCode Called
 
 Pin 16, GPIO 23, Stop Tool and Shutdown if held (Red button), M05
+
+Pin 17, NA, 3.3v supply to bring GPIO high on button press, NA
 
 Pin 18, GPIO24, Start Tool (Green Button), M03
 

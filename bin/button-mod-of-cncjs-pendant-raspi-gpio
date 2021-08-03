@@ -178,8 +178,8 @@ var createServer = function(options) {
 			clearTimeout(button1_hold_fuction);
 			button1_hold_fuction = null;
 		}
-
-		// Create Button2 Interupt
+	});
+	// Create Button2 Interupt
 	button2.watch(function (err, state) {
 		// Set Error Catch
 		if (err) {
@@ -253,8 +253,8 @@ var createServer = function(options) {
 			clearTimeout(button2_hold_fuction);
 			button2_hold_fuction = null;
 		}
-		
-		// Create Button3 Interupt
+	});	
+	// Create Button3 Interupt
 	button3.watch(function (err, state) {
 		// Set Error Catch
 		if (err) {
@@ -411,4 +411,4 @@ process.on('SIGINT', function () {
 	button_hold_fuction = null
 	clearTimeout(button_presses_fuction);
 	button_presses_fuction = null
-});
+})

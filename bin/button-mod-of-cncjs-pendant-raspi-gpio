@@ -401,7 +401,7 @@ SerialPort.list().then(ports => {
     console.log(port.path);
     console.log(port.pnpId);
     console.log(port.manufacturer);
-  }
+  })
   const choices = ports.map(function(port) {
   return port.comName;       
   });

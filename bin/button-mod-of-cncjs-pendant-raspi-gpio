@@ -404,9 +404,8 @@ serialport.list().then(ports => {
     console.log(port.manufacturer);
   }
   const choices = ports.map(function(port) {
-  return port.comName;
-  });
-  );
+  	return port.comName;
+  }));
 });
 
     inquirer.prompt([{

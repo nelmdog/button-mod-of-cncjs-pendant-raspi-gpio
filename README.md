@@ -28,7 +28,7 @@ All constructive comments welcomed.
 
 Thanks!
 
-Installation (borrowed from original readme...)
+Installation
 
 ## Installation
 

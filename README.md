@@ -39,8 +39,9 @@ cd ~/
 wget https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio/archive/master.zip
 unzip master.zip
 git clone https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio.git
-cd button-mod-of-cncjs-pendant-raspi-gpio*
+cd button-mod-of-cncjs-pendant-raspi-gpio-master
 npm install
+chmod u+x bin/button-mod-of-cncjs-pendant-raspi-gpio
 ```
 
 ## Usage

@@ -414,7 +414,7 @@ SerialPort.list().then(ports => {
 
         createServer(options);
     });
-});
+);
 
 // Clean Proccess Kill
 process.on('SIGINT', function () {

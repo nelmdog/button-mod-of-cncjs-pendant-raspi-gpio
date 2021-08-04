@@ -31,14 +31,6 @@ Thanks!
 Installation (borrowed from original readme...)
 
 ## Installation
-#### NPM Install (local)
-```
-npm install button-mod-of-cncjs-pendant-raspi-gpio
-```
-#### NPM Install (global) [Recommended]
-```
-sudo npm install -g button-mod-of-cncjs-pendant-raspi-gpio@latest --unsafe-perm --build-from-source
-```
 
 #### Manual Install
 ```

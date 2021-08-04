@@ -35,10 +35,10 @@
     "commander": "^8.1.0",
     "inquirer": "^8.1.2",
     "jsonwebtoken": "^8.5.1",
-    "lodash.get": "^4.4.2",
+    "lodash.get": "^4.17.21",
     "serialport": "~9.2.0",
     "socket.io-client": "^4.1.3",
-    "vorpal": "^1.12.0",
+    "vorpal": "^4.17.5",
     "sleep": "^6.3.0",
     "performance-now": "^2.1.0",
     "onoff": "^6.0.3"

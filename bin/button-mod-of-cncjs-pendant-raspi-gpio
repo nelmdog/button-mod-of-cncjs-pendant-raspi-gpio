@@ -9,7 +9,7 @@ var serverMain = require('../index');
 // Line below and functions at end result in unhandled promise error
 // var serialport = require('serialport');
 // Serial port error due to unhandled promise. Attempt to fix:
-const SerialPort = require('serialport');
+const serialport = require('serialport');
 
 var util = require('util')
 var exec = require('child_process').exec;
@@ -393,18 +393,20 @@ if (options.port) {
 //     const choices = ports.map(function(port) {
 //         return port.comName;
 //     });
+// });
 
 // Replacement serialport functions
 // Promise approach
-SerialPort.list().then(ports => {
+serialport.list().then(ports => {
   ports.forEach(function(port) {
     console.log(port.path);
     console.log(port.pnpId);
     console.log(port.manufacturer);
-  })
+  }
   const choices = ports.map(function(port) {
-  return port.comName;       
+  return port.comName;
   });
+  );
 });
 
     inquirer.prompt([{

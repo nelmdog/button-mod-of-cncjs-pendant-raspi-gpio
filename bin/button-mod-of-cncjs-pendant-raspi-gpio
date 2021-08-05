@@ -11,7 +11,8 @@ var serverMain = require('../index');
 // Serial port error due to unhandled promise. Attempt to fix:
 const SerialPort = require('serialport');
 var serialport = require('serialport');
-
+//who knows...
+var choices = require('serialport');
 var util = require('util')
 var exec = require('child_process').exec;
 

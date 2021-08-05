@@ -387,15 +387,15 @@ if (options.port) {
     return;
 }
 // Old serialport functions related to unhandled promise error
-serialport.list(function(err, ports) {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-    const choices = ports.map(function(port) {
-        return port.comName;
-    });
-});
+// serialport.list(function(err, ports) {
+//     if (err) {
+//         console.error(err);
+//         process.exit(1);
+//     }
+//     const choices = ports.map(function(port) {
+//         return port.comName;
+//     });
+// });
 
 // Replacement serialport functions
 // Promise approach
@@ -404,9 +404,9 @@ serialport.list().then(ports => {
     console.log(port.path);
     console.log(port.pnpId);
     console.log(port.manufacturer);
-//   const choices = ports.map(function(port) {
-//   	return port.comName;
-//   });
+  const choices = ports.map(function(port) {
+ 	return port.comName;
+  });
   });
 });
 

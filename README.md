@@ -18,7 +18,7 @@ Pin 18, GPIO24, Start Tool (Green Button), M03
 
 Pin 20, NA, Common ground for all buttons, NA
 
-Pin 22, GPIO25, Feed Hold function that efectively pauses the cut (Yellow button), M108 but requires 'emergency parser' to be enabled in firmware to really be useful
+Pin 22, GPIO25, Feed Hold function that efectively pauses the cut (Yellow button), M0 but requires 'emergency parser' to be enabled in firmware to really be useful. M108 can be used to restart.
 
 ![image-a](https://github.com/nelmdog/button-mod-of-cncjs-pendant-raspi-gpio/raw/master/docs/image-a.jpg)
 
